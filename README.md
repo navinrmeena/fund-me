@@ -1,4 +1,4 @@
-# Sample Hardhat Project
+# Hardhat Project
 
 This project demonstrates a basic Hardhat use case. ,  a script that deploys that contract.
 
