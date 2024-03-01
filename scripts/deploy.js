@@ -2,6 +2,7 @@
 const { ethers, run, network } = require("hardhat");
 const { error } = require("console");
 
+console.log("testing ..........");
 
 // async main
 async function main() {
@@ -18,16 +19,14 @@ async function main() {
   //   await verify(simpleStorage.address, []);
   // }
   //  print current fev value;
-  const CurrentVal = await simpleStorage.retrieve(); 
+  const CurrentVal = await simpleStorage.retrieve();
   console.log(`current fev number=${CurrentVal}`);
 
-  
   // update the current fev value
   const transectionResponce = await simpleStorage.store(7);
-  await transectionResponce.wait(1);//this is to wait unlit one more block validated in the block
-  const updatedval= await simpleStorage.retrieve();
+  await transectionResponce.wait(1); //this is to wait unlit one more block validated in the block
+  const updatedval = await simpleStorage.retrieve();
   console.log(`current fev number=${updatedval}`);
-
 }
 
 async function verify(contractAddress, args) {
