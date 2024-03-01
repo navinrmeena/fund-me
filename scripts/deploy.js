@@ -13,10 +13,15 @@ async function main() {
   console.log("deployed contract =" + simpleStorage.target);
   // what happens when we deploy to our hardhat
   console.log(network.config);
+  // if(network.config.chainId === 11155111 && process.env.ETHERSCAN_API_KEY){
+  //   await simpleStorage.deployTransaction.wait(5);
+  //   await verify(simpleStorage.address, []);
+  // }
   //  print current fev value;
-  const CurrentVal = await simpleStorage.retrieve();
+  const CurrentVal = await simpleStorage.retrieve(); 
   console.log(`current fev number=${CurrentVal}`);
 
+  
   // update the current fev value
   const transectionResponce = await simpleStorage.store(7);
   await transectionResponce.wait(1);//this is to wait unlit one more block validated in the block
