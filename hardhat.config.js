@@ -1,4 +1,5 @@
 const { EtherSymbol } = require("ethers");
+const { gasReporter } = require("./task/block-number.js");
 require("@nomicfoundation/hardhat-verify");
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
@@ -6,14 +7,17 @@ require("@nomicfoundation/hardhat-ethers");
 require("./task/block-number.js");
 require("./task/accounts.js");
 require("./task/balance.js");
+require("hardhat-gas-reporter");
+require("solidity-coverage");
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
 
-const Sepolia_RPC_URL = process.env.Sepolia_RPC_URL;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-
+const Sepolia_RPC_URL = process.env.Sepolia_RPC_URL || "https://eth-rinkeby";
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "Oxkey";
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Oxkey";
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY  || "key";
 
 module.exports = {
   defultNetwork: "hardhat",
@@ -37,4 +41,14 @@ module.exports = {
   sourcify: {
     enabled: true,
   },
+  gasReporter:{
+    enabled:true,
+    outputFile: "gas-reporte.txt",
+    noColors:true,
+    currency:"USD",
+    coinmarketcap: COINMARKETCAP_API_KEY,
+
+  }
+  
 };
+
